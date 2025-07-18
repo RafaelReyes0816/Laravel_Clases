@@ -1,0 +1,18 @@
+[90m= [39m[34;4mIlluminate\Database\Eloquent\Collection[39;24m {#1299
+    [34mall[39m: [
+      [34;4mApp\Models\Libro[39;24m {#6188
+        [34mid[39m: [35m9[39m,
+        [34mtitulo[39m: "[32mIllo tempora corporis tempora magni.[39m",
+        [34mautor[39m: "[32mAyana Marquardt[39m",
+        [34meditorial[39m: "[32mKohler-Gerlach[39m",
+        [34manio[39m: "[32m2008[39m",
+        [34mcreated_at[39m: "[32m2025-07-16 15:48:43[39m",
+        [34mupdated_at[39m: "[32m2025-07-16 15:48:43[39m",
+        [34mfecha_publicacion[39m: "[32m2008-06-14[39m",
+        [34mDOI[39m: "[32m10.7490/fxpg-56741[39m",
+        [34mcategoria[39m: "[32manálisis[39m",
+        [34mestado_libro[39m: [35m1[39m,
+      },
+    ],
+  }
+
