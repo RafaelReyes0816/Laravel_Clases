@@ -3,30 +3,43 @@
 @section('title', 'Libros')
 
 @section('content')
-    <h1 class="text-2xl font-bold mb-4">Aquí están los libros</h1>
-    <a href="{{ route('Libros.create') }}" 
-   class="inline-block px-4 py-2 bg-blue-600 text-white font-semibold rounded hover:bg-blue-700 transition-colors duration-200 shadow">
-    Crear Libro
-</a>
-
-    <div>
-        <div class="mt-6">
-            <ul>
-                @foreach ($Libros as $Libro)
-                    <li>{{ $Libro->titulo }}</li>
-                    <li>{{ $Libro->autor }}</li>
-                    <li>{{ $Libro->editorial }}</li>
-                    <li>{{ $Libro->anio }}</li>
-                    
-                    <li>
-                        <a href="{{ route('Libros.edit', $Libro->id) }}" class="inline-block px-2 py-1 bg-yellow-500 text-white rounded hover:bg-yellow-600 transition-colors duration-200">Editar</a>
-                    </li>
-                @endforeach
-            </ul>
+<div class="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-blue-100 via-white to-blue-200 py-8">
+    <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-3xl border border-blue-200">
+        <h1 class="text-3xl font-bold mb-6 text-blue-900 text-center">Aquí están los libros</h1>
+        <div class="flex justify-end mb-6">
+            <a href="{{ route('Libros.create') }}" 
+                class="inline-block px-4 py-2 bg-blue-700 hover:bg-blue-900 text-white font-bold rounded shadow transition">Crear Libro</a>
+        </div>
+        <div>
+            <table class="min-w-full divide-y divide-blue-200">
+                <thead class="bg-blue-50">
+                    <tr>
+                        <th class="px-4 py-2 text-left text-xs font-semibold text-blue-900 uppercase">Título</th>
+                        <th class="px-4 py-2 text-left text-xs font-semibold text-blue-900 uppercase">Autor</th>
+                        <th class="px-4 py-2 text-left text-xs font-semibold text-blue-900 uppercase">Editorial</th>
+                        <th class="px-4 py-2 text-left text-xs font-semibold text-blue-900 uppercase">Año</th>
+                        <th class="px-4 py-2 text-left text-xs font-semibold text-blue-900 uppercase">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-blue-100">
+                    @foreach ($Libros as $Libro)
+                        <tr>
+                            <td class="px-4 py-2 text-black">{{ $Libro->titulo }}</td>
+                            <td class="px-4 py-2 text-black">{{ $Libro->autor }}</td>
+                            <td class="px-4 py-2 text-black">{{ $Libro->editorial }}</td>
+                            <td class="px-4 py-2 text-black">{{ $Libro->anio }}</td>
+                            <td class="px-4 py-2">
+                                <a href="{{ route('Libros.edit', $Libro->id) }}" class="inline-block px-3 py-1 bg-yellow-500 text-white rounded hover:bg-yellow-600 transition">Editar</a>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
             <div class="mt-6">
-                {{ $Libros->links()}}
+                {{ $Libros->links() }}
             </div>
         </div>
     </div>
+</div>
     
 @endsection

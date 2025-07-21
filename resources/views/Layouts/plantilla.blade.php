@@ -12,9 +12,16 @@
 
     <!-- Header -->
     <header class="bg-blue-600 text-white p-4">
-        <h1 class="text-3xl font-bold">
-            Bienvenidos a mi página web
-        </h1>
+        <div class="container mx-auto flex flex-col md:flex-row items-center justify-between">
+            <h1 class="text-3xl font-bold mb-2 md:mb-0">
+                Bienvenidos a mi página web
+            </h1>
+            <nav class="flex space-x-2">
+                <a href="/" class="px-4 py-2 bg-blue-800 hover:bg-blue-900 rounded transition font-semibold">Inicio</a>
+                <a href="{{ route('Libros.index') }}" class="px-4 py-2 bg-blue-700 hover:bg-blue-900 rounded transition font-semibold">Libros</a>
+                <a href="{{ route('Libros.create') }}" class="px-4 py-2 bg-white text-blue-700 hover:bg-blue-100 border border-blue-700 rounded transition font-semibold">Agregar Libro</a>
+            </nav>
+        </div>
     </header>
 
     <!-- Contenido principal -->
