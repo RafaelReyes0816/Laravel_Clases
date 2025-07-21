@@ -17,6 +17,10 @@
                     <li>{{ $Libro->autor }}</li>
                     <li>{{ $Libro->editorial }}</li>
                     <li>{{ $Libro->anio }}</li>
+                    
+                    <li>
+                        <a href="{{ route('Libros.edit', $Libro->id) }}" class="inline-block px-2 py-1 bg-yellow-500 text-white rounded hover:bg-yellow-600 transition-colors duration-200">Editar</a>
+                    </li>
                 @endforeach
             </ul>
             <div class="mt-6">
