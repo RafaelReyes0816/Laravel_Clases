@@ -71,30 +71,4 @@ class LibrosController extends Controller
         return redirect()->route('Libros.index')->with('success', '¡Libro actualizado correctamente!');
     }
 
-    // Método para prestar un libro a un cliente
-    public function prestarLibro(Request $request)
-    {
-        $request->validate([
-            'idlibro' => 'required|exists:libros,id',
-            'idcliente' => 'required|exists:clientes,id',
-        ]);
-
-        $prestamo = new \App\Models\Prestamo();
-        $prestamo->idlibro = $request->input('idlibro');
-        $prestamo->idcliente = $request->input('idcliente');
-        $prestamo->fecha_prestamo = now();
-        $prestamo->estado = 'prestado';
-        $prestamo->save();
-
-        return redirect()->route('Libros.index')->with('success', '¡Libro prestado correctamente!');
-    }
-
-    //Formulario para prestar
-    public function formularioPrestar()
-    {
-        $libros = \App\Models\Libro::all();
-        $clientes = \App\Models\Cliente::all();
-        return view('Libros.prestar', compact('libros', 'clientes'));
-    }
-
 }

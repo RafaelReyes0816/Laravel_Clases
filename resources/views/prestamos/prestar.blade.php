@@ -5,7 +5,7 @@
 @section('content')
 <div class="max-w-lg mx-auto bg-white p-8 rounded shadow">
     <h2 class="text-2xl font-bold mb-6">Prestar libro</h2>
-    <form action="{{ route('prestamos.prestar') }}" method="POST">
+    <form action="{{ route('prestamos.store') }}" method="POST">
         @csrf
         <div class="mb-4">
             <label for="idlibro" class="block text-gray-700 font-semibold mb-2">Selecciona el libro:</label>

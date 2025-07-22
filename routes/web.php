@@ -5,6 +5,7 @@ use App\Http\Controllers\LibrosController;
 use App\Http\Controllers\ClienteController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\indexPrestamos;
+use App\Http\Controllers\PrestamoController;
 
 //Ruteo sin controlador
 /*Route::get('/', function () {
@@ -32,10 +33,10 @@ Route::put('/Libros/{libro}', [LibrosController::class, 'update'])->name('Libros
 Route::get('/clientes', [ClienteController::class, 'index'])->name('clientes.index');
 
 //Mostrar formulario general para prestar un libro
-Route::get('/prestamos/crear', [LibrosController::class, 'formularioPrestar'])->name('prestamos.formularioPrestar');
+Route::get('/prestamos/crear', [PrestamoController::class, 'create'])->name('prestamos.create');
 
 //Procesa el préstamo
-Route::post('/prestamos/crear', [LibrosController::class, 'prestarLibro'])->name('prestamos.prestar');
+Route::post('/prestamos/crear', [PrestamoController::class, 'store'])->name('prestamos.store');
 
 //Muestra los prestamos
 Route::get('/prestamos', [indexPrestamos::class, 'indexPrestamos'])->name('prestamos.index');
