@@ -20,9 +20,16 @@ class Libro extends Model
         'DOI',
         'categoria',
         'estado_libro',
+        'imagen',
     ];
 
     protected $casts = [
         'estado_libro' => 'boolean',
     ];
+
+    //función préstamo
+    public function prestamos()
+    {
+        return $this->hasMany(\App\Models\Prestamo::class, 'idlibro');
+    }
 }

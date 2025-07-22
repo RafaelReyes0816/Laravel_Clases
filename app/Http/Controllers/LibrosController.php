@@ -33,7 +33,16 @@ class LibrosController extends Controller
             'DOI' => 'nullable|string',
             'categoria' => 'required|string',
             'estado_libro' => 'required|string',
-        ]);
+            'imagen' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+        ]
+    );
+            $datos =$respuesta->all();
+            //Si hay imagen, guardarla y asiganar el path
+            if($respuesta->hasFile('imagen')){
+                $path = $respuesta->file('imagen')->store('imagenes', 'public');
+                $datos['imagen'] = $path;
+            }
+            Libro::create($datos);
 
         Libro::create($respuesta->all());
         return redirect()->route('Libros.index')->with('success', '¡Libro registrado correctamente!');
@@ -61,4 +70,31 @@ class LibrosController extends Controller
         $libro->update($request->all());
         return redirect()->route('Libros.index')->with('success', '¡Libro actualizado correctamente!');
     }
+
+    // Método para prestar un libro a un cliente
+    public function prestarLibro(Request $request)
+    {
+        $request->validate([
+            'idlibro' => 'required|exists:libros,id',
+            'idcliente' => 'required|exists:clientes,id',
+        ]);
+
+        $prestamo = new \App\Models\Prestamo();
+        $prestamo->idlibro = $request->input('idlibro');
+        $prestamo->idcliente = $request->input('idcliente');
+        $prestamo->fecha_prestamo = now();
+        $prestamo->estado = 'prestado';
+        $prestamo->save();
+
+        return redirect()->route('Libros.index')->with('success', '¡Libro prestado correctamente!');
+    }
+
+    //Formulario para prestar
+    public function formularioPrestar()
+    {
+        $libros = \App\Models\Libro::all();
+        $clientes = \App\Models\Cliente::all();
+        return view('Libros.prestar', compact('libros', 'clientes'));
+    }
+
 }

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('autor');
             $table->string('editorial')->nullable();
             $table->string('anio');
+            $table->string('imagen')->nullable();
 
             $table->timestamps();
         });

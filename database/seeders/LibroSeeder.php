@@ -14,8 +14,8 @@ class LibroSeeder extends Seeder
     public function run(): void
     {
         //
-        \App\Models\Libro::truncate();
+        \App\Models\Libro::query()->delete();
         \App\Models\Libro::factory()->count(10)->create();
-        
+
     }
 }

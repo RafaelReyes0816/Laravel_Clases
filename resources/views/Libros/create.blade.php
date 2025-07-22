@@ -11,7 +11,7 @@
             </div>
         @endif
         <h1 class="text-3xl font-bold mb-6 text-blue-900 text-center">Agregar libro</h1>
-        <form action="{{ route('Libros.guardar') }}" method="POST">
+        <form action="{{ route('Libros.guardar') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="mb-4">
                 <label class="block font-semibold text-blue-900">Nombre</label>
@@ -47,6 +47,11 @@
                     <option value="1">Disponible</option>
                     <option value="0">No disponible</option>
                 </select>
+            </div>
+            <div class="mb-6">
+                <label class="block font-semibold text-blue-900">Imagen del libro</label>
+                <input type="file" name="imagen" accept="image/jpeg,image/png,image/jpg" class="border border-blue-300 rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
+                <small class="text-gray-600">Formatos permitidos: JPEG, PNG, JPG. Tamaño máximo: 2MB</small>
             </div>
             <button type="submit" class="bg-blue-700 hover:bg-blue-900 text-white font-bold px-6 py-2 rounded shadow transition w-full">Registrar</button>
         </form>

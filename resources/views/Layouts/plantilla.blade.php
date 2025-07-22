@@ -20,11 +20,12 @@
                 <a href="/" class="px-4 py-2 bg-blue-800 hover:bg-blue-900 rounded transition font-semibold">Inicio</a>
                 <a href="{{ route('Libros.index') }}" class="px-4 py-2 bg-blue-700 hover:bg-blue-900 rounded transition font-semibold">Libros</a>
                 <a href="{{ route('Libros.create') }}" class="px-4 py-2 bg-white text-blue-700 hover:bg-blue-100 border border-blue-700 rounded transition font-semibold">Agregar Libro</a>
+                <a href="{{ route('prestamos.formularioPrestar') }}" class="px-4 py-2 bg-yellow-500 hover:bg-yellow-700 rounded transition font-semibold">Prestar Libro</a>
+                <a href="{{ route('prestamos.index') }}" class="px-4 py-2 bg-green-600 hover:bg-green-800 rounded transition font-semibold">Ver Préstamos</a>
             </nav>
         </div>
     </header>
 
-    <!-- Contenido principal -->
     <main class="flex-1 p-6">
         @yield('content')
     </main>
