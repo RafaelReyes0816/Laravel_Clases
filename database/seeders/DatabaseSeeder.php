@@ -23,6 +23,8 @@ class DatabaseSeeder extends Seeder
             LibroSeeder::class,
             ProductoSeeder::class,
             PedidoSeeder::class,
+            ServicioSeeder::class,
+            CiudadanoSeeder::class,
         ]);
     }
 }

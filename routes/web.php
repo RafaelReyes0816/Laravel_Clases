@@ -6,6 +6,7 @@ use App\Http\Controllers\ClienteController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\indexPrestamos;
 use App\Http\Controllers\PrestamoController;
+use App\Http\Controllers\EncuestaController;
 
 //Ruteo sin controlador
 /*Route::get('/', function () {
@@ -40,4 +41,7 @@ Route::post('/prestamos/crear', [PrestamoController::class, 'store'])->name('pre
 
 //Muestra los prestamos
 Route::get('/prestamos', [indexPrestamos::class, 'indexPrestamos'])->name('prestamos.index');
+
+Route::get('/encuesta', [EncuestaController::class, 'create'])->name('encuesta.create');
+Route::post('/encuesta', [EncuestaController::class, 'store'])->name('encuesta.store');
 
