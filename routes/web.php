@@ -7,41 +7,41 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\indexPrestamos;
 use App\Http\Controllers\PrestamoController;
 use App\Http\Controllers\EncuestaController;
+use App\Http\Controllers\AuthController;
 
-//Ruteo sin controlador
-/*Route::get('/', function () {
-    return view('home');
+//Rutas públicas
+Route::get('/login', [AuthController::class, 'loginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+
+// Rutas protegidas
+Route::middleware('auth')->group(function () {
+    Route::get('/', function () {
+        return view('dashboard');
+    })->name('dashboard');
+
+    // Libros
+    Route::get('/Libros', [LibrosController::class, 'index'])->name('Libros.index');
+    Route::get('/Libros/crear', [LibrosController::class, 'create'])->name('Libros.create');
+    Route::post('/Libros', [LibrosController::class, 'guardar'])->name('Libros.guardar');
+    Route::get('/Libros/{libro}/editar', [LibrosController::class, 'edit'])->name('Libros.edit');
+    Route::put('/Libros/{libro}', [LibrosController::class, 'update'])->name('Libros.update');
+
+    // Clientes
+    Route::get('/clientes', [ClienteController::class, 'index'])->name('clientes.index');
+
+    // Préstamos
+    Route::get('/prestamos/crear', [PrestamoController::class, 'create'])->name('prestamos.create');
+    Route::post('/prestamos/crear', [PrestamoController::class, 'store'])->name('prestamos.store');
+    Route::get('/prestamos', [indexPrestamos::class, 'indexPrestamos'])->name('prestamos.index');
+
+    // Encuesta
+    Route::get('/encuesta', [EncuestaController::class, 'create'])->name('encuesta.create');
+    Route::post('/encuesta', [EncuestaController::class, 'store'])->name('encuesta.store');
+
+    // Dashboard
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 });
-*/
-
-//Ruteo usando controlador
-Route::get('/',HomeController::class);
-
-//Para entrar a un archivo que esta dentro de una carpeta
-Route::get('/Libros',[LibrosController::class,'index'])->name('Libros.index');
-
-//Crear
-Route::get('/Libros/crear', [LibrosController::class, 'create'])->name('Libros.create');
-
-//Guardar dato
-Route::post('/Libros', [LibrosController::class, 'guardar'])->name('Libros.guardar');
-
-// Editar
-Route::get('/Libros/{libro}/editar', [LibrosController::class, 'edit'])->name('Libros.edit');
-Route::put('/Libros/{libro}', [LibrosController::class, 'update'])->name('Libros.update');
-
-//Clientes (Es aparte esto)
-Route::get('/clientes', [ClienteController::class, 'index'])->name('clientes.index');
-
-//Mostrar formulario general para prestar un libro
-Route::get('/prestamos/crear', [PrestamoController::class, 'create'])->name('prestamos.create');
-
-//Procesa el préstamo
-Route::post('/prestamos/crear', [PrestamoController::class, 'store'])->name('prestamos.store');
-
-//Muestra los prestamos
-Route::get('/prestamos', [indexPrestamos::class, 'indexPrestamos'])->name('prestamos.index');
-
-Route::get('/encuesta', [EncuestaController::class, 'create'])->name('encuesta.create');
-Route::post('/encuesta', [EncuestaController::class, 'store'])->name('encuesta.store');
-
